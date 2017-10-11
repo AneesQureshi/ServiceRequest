@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Linq;
 using System.Net.Http;
@@ -11,15 +12,28 @@ namespace ServiceRequest.Models
 {
     public class ServiceRequestModel
     {
+
+      
+        [Display(Name = "SR#")]  // Set the display name of the field
         public string idsr { get; set; }
+       
         public string userName { get; set; }
+     
         public string emailId { get; set; }
+        
+        [Display(Name = "Title")]
         public string title { get; set; }
+        [Display(Name = "Category")]
         public string category { get; set; }
+        [Display(Name = "Sub-Category")]
         public string subCategory { get; set; }
+        [Display(Name = "Description")]
         public string description { get; set; }
+        [Display(Name = "Priority ")]
         public string priority { get; set; }
+        [Display(Name = "Status")]
         public string status { get; set; }
+       
         public int userId { get; set; } // id of user table is foreign key in sr table
 
 

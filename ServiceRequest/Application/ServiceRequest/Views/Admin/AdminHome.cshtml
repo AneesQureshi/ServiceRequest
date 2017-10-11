@@ -9,7 +9,7 @@
 
 
 
-<h2>AdminHome</h2>
+
 
 <section class="content">
     <div class="row">
@@ -21,7 +21,7 @@
               
                     <div id="gridContent" class="box-body" >
                         @grid.GetHtml(
-        tableStyle:"table table-bordered",
+        tableStyle: "table table-bordered",
         //headerStyle: "webgrid-header",
         //footerStyle: "webgrid-footer",
         //alternatingRowStyle: "webgrid-alternating-row",
@@ -31,14 +31,15 @@
 
         columns: grid.Columns(
 
-                grid.Column("idsr", " ServiceRequest No."),
+                grid.Column("idsr", " SR#"),
                 grid.Column("userName", "User Name"),
                    grid.Column("emailId", "Email-Id"),
                       grid.Column("title", "Title"),
                 grid.Column("category", "Category"),
                  grid.Column("subCategory", "Sub-Category"),
                   grid.Column("priority", "Priority"),
-                   grid.Column("status", "Status")
+                   grid.Column("status", "Status"),
+                    grid.Column("Action", format: @<text>@Html.ActionLink("View Details", "ViewDetail", "View", routeValues: new {item.idsr,item.title,item.category,item.subCategory,item.priority,item.status }, htmlAttributes: null)</text>)
 
                 ))
                       

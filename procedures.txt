@@ -1,0 +1,26 @@
+
+
+
+
+1.admin list page view details -click view details show in form UI page with medium blob-3hr from db
+
+2.user list page,-4hr
+add new req button, new req open form in not disabled mode-3hr
+view details link open view details like in admin disable mode-2hr
+
+
+3.click resolve changes status in db-2hr
+4.click submit save req in db with generating new sr.-2hr
+----------
+5.UI sub category list automatic open.-2hr.
+6.correction publish path actual problem-2hr.
+
+total - 20hr.
+
+
+
+
+
+
+
+

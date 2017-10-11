@@ -25,6 +25,7 @@ namespace ServiceRequest.Controllers
             objUserModel.password = objloginView.password;
             if (ModelState.IsValid)
             {
+                Session["email"] = objUserModel.email;
                 string role = objUserModel.webapiCheckUser(objUserModel);
 
                 if (role == "admin")

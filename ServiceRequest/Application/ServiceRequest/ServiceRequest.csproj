@@ -5954,6 +5954,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\ViewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -7296,6 +7297,7 @@
     <Content Include="Views\Admin\AdminHome.cshtml" />
     <Content Include="Views\User\UserHome.cshtml" />
     <None Include="Properties\PublishProfiles\ServiceRequest.pubxml" />
+    <Content Include="Views\View\ViewDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

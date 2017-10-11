@@ -28,8 +28,12 @@ namespace ServiceRequest.Models
             HttpResponseMessage response = null; // if   HttpResponseMessage dnt work then add in referece system.net,system.nethttp, system.net.formatiing  etc
             try
             {
+                //this has to be uncomment before publish 
 
-                string struri2 = "/" + "api" + "/" + "Users" + "/" + "LogIn" + "/" + user.email + "/" + user.password;
+                //string appFolderName = "Service_Request_Api"; 
+                string appFolderName = "";
+                string struri2 = appFolderName + "/" + "api" + "/" + "Users" + "/" + "LogIn" + "/" + user.email + "/" + user.password;
+
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(appservice);
                 client.DefaultRequestHeaders.Accept.Clear();
