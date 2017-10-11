@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ServiceRequest.Models.ServiceRequestModel>
+@{
+    ViewBag.Title = "AdminHome";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+
+    WebGrid grid = new WebGrid(Model);
+    grid.Pager(WebGridPagerModes.All);
+}
+
+
+
+<h2>AdminHome</h2>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">All Service Requests</h3>
+                </div>
+              
+                    <div id="gridContent" class="box-body" >
+                        @grid.GetHtml(
+        tableStyle:"table table-bordered",
+        //headerStyle: "webgrid-header",
+        //footerStyle: "webgrid-footer",
+        //alternatingRowStyle: "webgrid-alternating-row",
+        //selectedRowStyle: "webgrid-selected-row",
+        //rowStyle: "webgrid-row-style",
+        mode: WebGridPagerModes.All,
+
+        columns: grid.Columns(
+
+                grid.Column("idsr", " ServiceRequest No."),
+                grid.Column("userName", "User Name"),
+                   grid.Column("emailId", "Email-Id"),
+                      grid.Column("title", "Title"),
+                grid.Column("category", "Category"),
+                 grid.Column("subCategory", "Sub-Category"),
+                  grid.Column("priority", "Priority"),
+                   grid.Column("status", "Status")
+
+                ))
+                      
+                    </div>
+
+                    <div class="box-footer clearfix">
+                        <ul class="pagination pagination-sm no-margin pull-right">
+                            <li><a href="#">&laquo;</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+</div>
+
+        </div>
+    </div>
+</section>
+
+

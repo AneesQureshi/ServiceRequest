@@ -1,0 +1,133 @@
+﻿@model ServiceRequest.Models.ViewModels.LoginViewModel
+@{
+    ViewBag.Title = "Index";
+
+}
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Service Request</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link href="~/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/dist/css/AdminLTE.min.css" rel="stylesheet" />
+    <!-- UI validations -->
+    <!-- Jquery -->
+    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $("#Login").click(function () {
+
+                var email = $("#email").val();
+                var password = $("#password").val();
+
+
+                var regx = /^[A-Za-z]+$/;
+                var str = "@@";
+
+                if (email == "") {
+                    alert("Please Enter your email");
+                    return false;
+                }
+                else {
+
+                    if (email.indexOf(str) == -1) {
+                        alert("Email is Wrong");
+                        return false;
+                    }
+                    else {
+                        var y = email.length;
+                        if (y < 5) {
+                            alert("Email is Wrong1");
+                            return false;
+                        }
+                    }
+                }
+
+                if (password == "") {
+                    alert("Please Enter Password");
+                    return false;
+                }
+
+
+            });
+            
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <div style="background-color:#3C8DBC;height:90px;margin-top:-20px;">
+
+
+
+        <div class="row">
+            <div class="col-lg-6">
+                <h1 style="color:white; margin-top:30px"><b>Service</b>Request</h1>
+            </div>
+            @using (Html.BeginForm("Check", "Login", FormMethod.Post))
+            {
+                //    @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <div class="col-lg-2" style="margin-top:20px;">
+                    @Html.LabelFor(Model => Model.email, new { style = "color:white" })<br>
+                    @Html.TextBoxFor(Model => Model.email)<br>
+                    @Html.ValidationMessageFor(Model => Model.email)
+                </div>
+
+                <div class="col-lg-2" style="margin-top:20px;">
+                    @Html.LabelFor(Model => Model.password, new { style = "color:white" })<br>
+                    @Html.PasswordFor(Model => Model.password)<br>
+                    @Html.ValidationMessageFor(Model => Model.password)
+
+                </div>
+
+                <div class="col-lg-2">
+                    <br><br>
+                    <input type="submit" value="Login" class="btn btn-success " id="Login" />
+
+
+                    <br>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-12 col-lg-12">
+                                <h3 id="msg"></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+
+        </div>
+
+
+
+    </div>
+
+ 
+
+
+
+    <script type="text/javascript">
+        debugger;
+        if ('@TempData["message"]' != null || '@TempData["message"]' != "") {
+            var displayMessage = '@TempData["message"]';
+            document.getElementById("msg").textContent = displayMessage;
+        }
+    </script>
+</body>
+</html>
