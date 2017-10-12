@@ -167,5 +167,52 @@ namespace ServiceRequestAPI.Models
             }
             return ServiceRequestModelList;
         }
+
+
+        //for saving service request in db
+
+        public bool saveServiceRequest(ServiceRequestModel objsr)
+        {
+
+            bool Inserted = false;
+               try
+            {
+
+                MySqlConnection sqlcon = db.OpenConnection();
+                MySqlCommand cmd = new MySqlCommand("sp_saveServiceRequest", sqlcon);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("spidsr", "1");
+                cmd.Parameters.AddWithValue("spemail", objsr.emailId);
+                cmd.Parameters.AddWithValue("sptitle", objsr.title);
+                cmd.Parameters.AddWithValue("spcategory", objsr.category);
+                cmd.Parameters.AddWithValue("spsubcategory", objsr.subCategory);
+                cmd.Parameters.AddWithValue("sppriority", objsr.priority);
+                cmd.Parameters.AddWithValue("spdescription", objsr.description);
+                MySqlDataReader sdr = cmd.ExecuteReader();
+
+                int rowInserted = cmd.ExecuteNonQuery();
+
+                if (rowInserted > 0)
+                {
+                    Inserted = true;
+                }
+
+                sdr.Close();
+
+
+
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            finally
+            {
+                db.CloseConnection();
+            }
+            return Inserted;
+        }
+
     }
 }

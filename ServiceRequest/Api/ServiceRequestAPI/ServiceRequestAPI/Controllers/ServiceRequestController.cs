@@ -67,5 +67,25 @@ namespace ServiceRequestAPI.Controllers
             }
             return Ok(sr1);
         }
+
+        [Route("api/ServiceRequestController/saveServiceRequestAPI")]
+        [HttpPost]
+        public IHttpActionResult Insert(ServiceRequestModel objsr)
+        {
+
+            bool Inserted = false;
+
+            Users user1 = new Users();
+            try
+            {
+                Inserted = objsr.saveServiceRequest(objsr);
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+
+            return Ok(Inserted);
+        }
     }
 }

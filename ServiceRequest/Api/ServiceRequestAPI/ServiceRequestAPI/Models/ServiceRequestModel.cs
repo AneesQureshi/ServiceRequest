@@ -48,5 +48,15 @@ namespace ServiceRequestAPI.Models
             return sr1;
         }
 
+        public bool saveServiceRequest(ServiceRequestModel objsr)
+        {
+
+            bool Inserted = false;
+            dbHelper db = new dbHelper();
+            Inserted = db.saveServiceRequest(objsr);
+           
+            return Inserted;
+        }
+
     }
 }

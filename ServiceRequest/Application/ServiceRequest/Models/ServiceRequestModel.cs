@@ -9,6 +9,12 @@ using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using System.Runtime.Serialization.Json;
+
+
+
+
+
 
 namespace ServiceRequest.Models
 {
@@ -170,6 +176,50 @@ namespace ServiceRequest.Models
                 string msg = ex.Message;
             }
             return sr;
+        }
+
+        //for saving service request in db
+        public bool saveServiceRequestAPI(ServiceRequestModel objsr,string email)
+        {
+            objsr.emailId = email;// adding email of logged in user from session to obj of model.
+          
+            
+            string appservice = ConfigurationManager.AppSettings["loginWebServiceAPI"];
+            string result = "";
+            bool flag = false;
+            HttpResponseMessage response = null;
+            try
+            {
+
+                string appFolderName = "";
+                string struri2 = appFolderName + "/" + "api" + "/" + "ServiceRequestController" + "/" + "saveServiceRequestAPI";
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(appservice);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                response = client.PostAsJsonAsync(struri2, objsr).Result;
+                
+
+                if (response != null || response.IsSuccessStatusCode)
+                {
+
+                    result = response.Content.ReadAsStringAsync().Result;
+
+                }
+
+
+
+                flag = Convert.ToBoolean(result);
+                return flag;
+
+
+
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+            return flag;
         }
     }
 }
