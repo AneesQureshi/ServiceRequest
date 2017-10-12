@@ -7,6 +7,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
+using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace ServiceRequest.Models
 {
@@ -48,8 +50,11 @@ namespace ServiceRequest.Models
             HttpResponseMessage response = null; // if   HttpResponseMessage dnt work then add in referece system.net,system.nethttp, system.net.formatiing  etc
             try
             {
+                //this has to be uncomment before publish 
 
-                string struri2 = "/" + "api" + "/" + "ServiceRequestController" + "/" + "LoadServiceRequest" + "/" ;
+                //string appFolderName = "Service_Request_Api"; 
+                string appFolderName = "";
+                string struri2 = appFolderName + "/" + "api" + "/" + "ServiceRequestController" + "/" + "loadServiceRequest" + "/" ;
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(appservice);
                 client.DefaultRequestHeaders.Accept.Clear();
@@ -76,6 +81,50 @@ namespace ServiceRequest.Models
                 string msg = ex.Message;
             }
             return sr;
+        }
+
+
+        public string loadDescriptionAPI(string idsr)
+        {
+
+
+            string appservice = ConfigurationManager.AppSettings["ServiceRequestAPI"];
+            string description = "";
+           
+
+            HttpResponseMessage response = null; // if   HttpResponseMessage dnt work then add in referece system.net,system.nethttp, system.net.formatiing  etc
+            try
+            {
+                //this has to be uncomment before publish 
+
+                //string appFolderName = "Service_Request_Api"; 
+                string appFolderName = "";
+                string struri2 = appFolderName + "/" + "api" + "/" + "ServiceRequestController" + "/" + "loadDescriptionAPI" + "/"+idsr+"/";
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(appservice);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                response = client.GetAsync(struri2).Result;
+
+                if (response != null || response.IsSuccessStatusCode)
+                {
+
+                    description = response.Content.ReadAsStringAsync().Result;
+
+                }
+
+
+                description = JsonConvert.DeserializeObject<string>(description);
+
+                return description;
+
+
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+            return description;
         }
     }
 }

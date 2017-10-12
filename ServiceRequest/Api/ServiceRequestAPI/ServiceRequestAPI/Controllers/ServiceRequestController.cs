@@ -20,13 +20,32 @@ namespace ServiceRequestAPI.Controllers
             List<ServiceRequestModel> sr1 = new List<ServiceRequestModel>();
             try
             {
-                sr1 = sr.LoadServiceRequest();
+                sr1 = sr.loadServiceRequest();
             }
             catch (Exception ex)
             {
                 string msg = ex.Message;
             }
             return Ok(sr1);
+        }
+
+        [Route("api/ServiceRequestController/loadDescriptionAPI/{idsr}")]
+        [HttpGet]
+        public IHttpActionResult loadDescriptionAPI(string idsr)
+        {
+
+            string description = "";
+            ServiceRequestModel sr = new ServiceRequestModel();
+           
+            try
+            {
+                description = sr.loadDescription(idsr);
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+            return Ok(description);
         }
     }
 }

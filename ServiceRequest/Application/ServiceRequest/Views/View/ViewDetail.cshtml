@@ -22,7 +22,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.title, new { @class = "col-sm-2 " })
         <div class="col-sm-10">
-            @Html.TextBoxFor(model => model.title, new { @class = "form-control" })
+            @Html.TextBoxFor(model => model.title, new { @class = "form-control", disabled = "disabled" })
             <br>
         </div>
     </div>
@@ -61,7 +61,7 @@
 
             }
 
-            @Html.DropDownListFor(model => model.category, categorylistItems, "-- Select Category --", new { @onchange = "setStates()", @class = "form-control", @selected = "-- Select Category --" })
+            @Html.DropDownListFor(model => model.category, categorylistItems, "-- Select Category --", new { @onchange = "setStates()", @class = "form-control", @selected = "-- Select Category --", disabled = "disabled" })
             <br>
         </div>
     </div>
@@ -105,7 +105,7 @@
 
                     }
                     <div class="col-sm-10">
-                        @Html.DropDownListFor(model => model.subCategory, subCategorylistItems, "-- Select Sub-Category --", new { @class = "form-control", @selected = "-- Select Sub-Category --" })
+                        @Html.DropDownListFor(model => model.subCategory, subCategorylistItems, "-- Select Sub-Category --", new { @class = "form-control", @selected = "-- Select Sub-Category --", disabled = "disabled" })
                         <br>
                      </div>
                 </div>
@@ -137,7 +137,7 @@
 
                             }
                             <div class="col-sm-10">
-                                @Html.DropDownListFor(model => model.priority, prioritylistItems, "-- Select Priority --", new { @class = "form-control", @selected = "-- Select Priority --" })
+                                @Html.DropDownListFor(model => model.priority, prioritylistItems, "-- Select Priority --", new { @class = "form-control", @selected = "-- Select Priority --", disabled = "disabled" })
                                 <br>
                              </div>
                         </div>
@@ -146,7 +146,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.description, new { @class = "col-sm-2 control-label" })
                                     <div class="col-sm-10">
-                                        @Html.TextAreaFor(model => model.description, 4, 63, new { @title = "Description", @class = "form-control" })
+                                        @Html.TextAreaFor(model => model.description, 4, 63, new { @title = "Description", @class = "form-control", disabled = "disabled" })
                                         <br>
                                     </div>
                                 </div>

@@ -87,5 +87,41 @@ namespace ServiceRequestAPI.Models
             }
             return ServiceRequestModelList;
         }
+
+        public string loadDescription(string idsr)
+        {
+
+            string description = "";
+            try
+            {
+
+                MySqlConnection sqlcon = db.OpenConnection();
+                MySqlCommand cmd = new MySqlCommand("sp_description", sqlcon);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("spidsr", idsr);
+                MySqlDataReader sdr = cmd.ExecuteReader();
+
+
+                if (sdr.Read())
+                {
+                    description = sdr["description"].ToString();
+                  
+
+                }
+                sdr.Close();
+
+                return description;
+
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            finally
+            {
+                db.CloseConnection();
+            }
+            return description;
+        }
     }
 }

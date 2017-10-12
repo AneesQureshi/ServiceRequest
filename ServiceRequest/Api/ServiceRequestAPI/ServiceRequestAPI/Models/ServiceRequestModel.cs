@@ -18,8 +18,8 @@ namespace ServiceRequestAPI.Models
         public string status { get; set; }
         public int userId { get; set; } // id of user table is foreign key in sr table
 
-
-        public List<ServiceRequestModel> LoadServiceRequest()
+        //for loading service request details in a list 
+        public List<ServiceRequestModel> loadServiceRequest()
         {
 
             List<ServiceRequestModel> sr1 = new List<ServiceRequestModel>();
@@ -28,5 +28,14 @@ namespace ServiceRequestAPI.Models
             return sr1;
         }
 
+        //for loading description if click on view details
+        public string loadDescription(string idsr)
+        {
+
+            string description = "";
+            dbHelper db = new dbHelper();
+            description = db.loadDescription(idsr);
+            return description;
+        }
     }
 }

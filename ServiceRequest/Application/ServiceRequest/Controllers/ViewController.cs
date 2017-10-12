@@ -20,7 +20,8 @@ namespace ServiceRequest.Controllers
             objsr.subCategory = subCategory;
             objsr.priority = priority;
             objsr.status = status;
-
+            string description= objsr.loadDescriptionAPI(idsr);
+            objsr.description = description;
             return View(objsr);
         }
     }
