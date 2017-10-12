@@ -10,6 +10,7 @@ namespace ServiceRequest.Controllers
 {
     public class AdminController : Controller
     {
+        
         // GET: Admin
         public ActionResult AdminHome()
         {
@@ -32,5 +33,23 @@ namespace ServiceRequest.Controllers
             Session.Clear(); // it will clear the session at the end of request
             return RedirectToAction("Index", "Login");
         }
+        
+        public ActionResult UserHome()
+        {
+            if (Session["email"] != null)
+            {
+                string email = (string)Session["email"];
+
+                ServiceRequestModel objSr = new ServiceRequestModel();
+                List<ServiceRequestModel> sr = new List<ServiceRequestModel>();
+                sr = objSr.loadUserServiceRequestAPI(email);
+                return View("AdminHome",sr);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
+        }
+
     }
 }

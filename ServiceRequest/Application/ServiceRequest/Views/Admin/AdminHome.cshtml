@@ -10,54 +10,116 @@
 
 
 
+@if ((string)Session["role"] == "user")
+{
+    <div class="col-md-12">
+        <input type="button" value="Add New request" class="btn btn-info pull-left" onclick="window.location.href=('@Url.Action("addRequest", "View" )')" />
+        <br>
+       </div>
+    
+    //webgrid for user section
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    
+     
+                    <div class="box">
+                        <div class="box-header with-border">
 
-<section class="content">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">All Service Requests</h3>
+                            <h3 class="box-title">My Service Requests</h3>
+                        </div>
+                        
+                        <div id="gridContent" class="box-body">
+
+                            @grid.GetHtml(
+tableStyle: "table table-bordered",
+//headerStyle: "webgrid-header",
+//footerStyle: "webgrid-footer",
+//alternatingRowStyle: "webgrid-alternating-row",
+//selectedRowStyle: "webgrid-selected-row",
+//rowStyle: "webgrid-row-style",
+mode: WebGridPagerModes.All,
+
+columns: grid.Columns(
+
+ grid.Column("idsr", " SR#"),
+
+       grid.Column("title", "Title"),
+ grid.Column("category", "Category"),
+  grid.Column("subCategory", "Sub-Category"),
+   grid.Column("priority", "Priority"),
+    grid.Column("status", "Status")
+     ))
+
+                        </div>
+
+                        <div class="box-footer clearfix">
+                            <ul class="pagination pagination-sm no-margin pull-right">
+                                <li><a href="#">&laquo;</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">&raquo;</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
-              
-                    <div id="gridContent" class="box-body" >
-                        @grid.GetHtml(
-        tableStyle: "table table-bordered",
-        //headerStyle: "webgrid-header",
-        //footerStyle: "webgrid-footer",
-        //alternatingRowStyle: "webgrid-alternating-row",
-        //selectedRowStyle: "webgrid-selected-row",
-        //rowStyle: "webgrid-row-style",
-        mode: WebGridPagerModes.All,
+            </div>
+        </section>
+        }
+        else
+        {
+        //web grid for admin section
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
 
-        columns: grid.Columns(
+                            <h3 class="box-title">All Service Requests</h3>
+                        </div>
 
-                grid.Column("idsr", " SR#"),
-                grid.Column("userName", "User Name"),
-                   grid.Column("emailId", "Email-Id"),
-                      grid.Column("title", "Title"),
-                grid.Column("category", "Category"),
-                 grid.Column("subCategory", "Sub-Category"),
-                  grid.Column("priority", "Priority"),
-                   grid.Column("status", "Status"),
-                    grid.Column("Action", format: @<text>@Html.ActionLink("View Details", "ViewDetail", "View", routeValues: new {item.idsr,item.title,item.category,item.subCategory,item.priority,item.status }, htmlAttributes: null)</text>)
+                        <div id="gridContent" class="box-body">
 
-                ))
-                      
+                            @grid.GetHtml(
+tableStyle: "table table-bordered",
+//headerStyle: "webgrid-header",
+//footerStyle: "webgrid-footer",
+//alternatingRowStyle: "webgrid-alternating-row",
+//selectedRowStyle: "webgrid-selected-row",
+//rowStyle: "webgrid-row-style",
+mode: WebGridPagerModes.All,
+
+columns: grid.Columns(
+
+ grid.Column("idsr", " SR#"),
+ grid.Column("userName", "User Name"),
+    grid.Column("emailId", "Email-Id"),
+       grid.Column("title", "Title"),
+ grid.Column("category", "Category"),
+  grid.Column("subCategory", "Sub-Category"),
+   grid.Column("priority", "Priority"),
+    grid.Column("status", "Status"),
+     grid.Column("Action", format: @<text>@Html.ActionLink("View Details", "ViewDetail", "View", routeValues: new { item.idsr, item.title, item.category, item.subCategory, item.priority, item.status }, htmlAttributes: null)</text>)
+
+ ))
+
+                        </div>
+
+                        <div class="box-footer clearfix">
+                            <ul class="pagination pagination-sm no-margin pull-right">
+                                <li><a href="#">&laquo;</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">&raquo;</a></li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div class="box-footer clearfix">
-                        <ul class="pagination pagination-sm no-margin pull-right">
-                            <li><a href="#">&laquo;</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">&raquo;</a></li>
-                        </ul>
-                    </div>
-</div>
+                </div>
+            </div>
+        </section>
 
-        </div>
-    </div>
-</section>
-
-
+        }

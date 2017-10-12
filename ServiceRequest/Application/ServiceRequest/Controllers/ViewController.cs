@@ -24,5 +24,23 @@ namespace ServiceRequest.Controllers
             objsr.description = description;
             return View(objsr);
         }
+
+        //GET:for add request
+        public ActionResult addRequest()
+        {
+
+            if (Session["email"] != null)
+            {
+                
+
+                ServiceRequestModel objSr = new ServiceRequestModel();
+               
+                return View("ViewDetail", objSr);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
+        }
     }
 }

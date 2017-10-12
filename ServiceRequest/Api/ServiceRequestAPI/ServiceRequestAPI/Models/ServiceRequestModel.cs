@@ -18,7 +18,7 @@ namespace ServiceRequestAPI.Models
         public string status { get; set; }
         public int userId { get; set; } // id of user table is foreign key in sr table
 
-        //for loading service request details in a list 
+        //for loading admin service request details in a list 
         public List<ServiceRequestModel> loadServiceRequest()
         {
 
@@ -37,5 +37,16 @@ namespace ServiceRequestAPI.Models
             description = db.loadDescription(idsr);
             return description;
         }
+
+        //for loading user service request details in a list 
+        public List<ServiceRequestModel> loadUserServiceRequest(string email)
+        {
+
+            List<ServiceRequestModel> sr1 = new List<ServiceRequestModel>();
+            dbHelper db = new dbHelper();
+            sr1 = db.loadUserServiceRequest(email);
+            return sr1;
+        }
+
     }
 }

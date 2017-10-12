@@ -27,13 +27,19 @@ namespace ServiceRequest.Controllers
             {
                 Session["email"] = objUserModel.email;
                 string role = objUserModel.webapiCheckUser(objUserModel);
+                Session["role"] = role;
 
                 if (role == "admin")
                     return RedirectToAction("AdminHome", "Admin");
 
                 else if (role == "user")
-                   return RedirectToAction("UserHome", "User",objUserModel.email);
-                
+                {
+                    
+                    return RedirectToAction("UserHome", "User");
+                }
+                    
+                        
+
             }
             TempData["message"] = "Invalid username or password";
             return RedirectToAction("Index");

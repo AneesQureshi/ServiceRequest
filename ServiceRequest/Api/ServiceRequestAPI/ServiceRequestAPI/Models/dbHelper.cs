@@ -123,5 +123,49 @@ namespace ServiceRequestAPI.Models
             }
             return description;
         }
+
+        public List<ServiceRequestModel> loadUserServiceRequest(string email)
+        {
+
+            List<ServiceRequestModel> ServiceRequestModelList = new List<ServiceRequestModel>();
+            try
+            {
+
+                MySqlConnection sqlcon = db.OpenConnection();
+                MySqlCommand cmd = new MySqlCommand("sp_User_ServiceRequest", sqlcon);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("spemail", email);
+                MySqlDataReader sdr = cmd.ExecuteReader();
+
+
+                while (sdr.Read())
+                {
+                    ServiceRequestModel sr = new ServiceRequestModel();
+                    sr.idsr = sdr["idsr"].ToString();
+                   
+                    sr.title = sdr["title"].ToString();
+                    sr.category = sdr["category"].ToString();
+                    sr.subCategory = sdr["sub_category"].ToString();
+
+                    sr.priority = sdr["priority"].ToString();
+                    sr.status = sdr["status"].ToString();
+                    ServiceRequestModelList.Add(sr);
+
+                }
+                sdr.Close();
+
+
+
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            finally
+            {
+                db.CloseConnection();
+            }
+            return ServiceRequestModelList;
+        }
     }
 }

@@ -38,7 +38,7 @@ namespace ServiceRequest.Models
        
         public int userId { get; set; } // id of user table is foreign key in sr table
 
-
+        //for admin list
         public List<ServiceRequestModel> LoadServiceRequestAPI()
         {
 
@@ -83,7 +83,7 @@ namespace ServiceRequest.Models
             return sr;
         }
 
-
+        //for admin view details description
         public string loadDescriptionAPI(string idsr)
         {
 
@@ -125,6 +125,51 @@ namespace ServiceRequest.Models
                 string msg = ex.Message;
             }
             return description;
+        }
+
+        // for user sr list
+        public List<ServiceRequestModel> loadUserServiceRequestAPI(string email)
+        {
+
+
+            string appservice = ConfigurationManager.AppSettings["ServiceRequestAPI"];
+            string result = "";
+            List<ServiceRequestModel> sr = new List<ServiceRequestModel>();
+
+            HttpResponseMessage response = null; // if   HttpResponseMessage dnt work then add in referece system.net,system.nethttp, system.net.formatiing  etc
+            try
+            {
+                //this has to be uncomment before publish 
+
+                //string appFolderName = "Service_Request_Api"; 
+                string appFolderName = "";
+                string struri2 = appFolderName + "/" + "api" + "/" + "ServiceRequestController" + "/" + "loadUserServiceRequest" + "/"  + email + "/";
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(appservice);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                response = client.GetAsync(struri2).Result;
+
+                if (response != null || response.IsSuccessStatusCode)
+                {
+
+                    result = response.Content.ReadAsStringAsync().Result;
+
+                }
+
+                sr = JsonConvert.DeserializeObject<List<ServiceRequestModel>>(result);
+
+
+                return sr;
+
+
+
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+            return sr;
         }
     }
 }
