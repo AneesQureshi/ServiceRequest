@@ -184,7 +184,7 @@ namespace ServiceRequest.Models
             objsr.emailId = email;// adding email of logged in user from session to obj of model.
           
             
-            string appservice = ConfigurationManager.AppSettings["loginWebServiceAPI"];
+            string appservice = ConfigurationManager.AppSettings["ServiceRequestAPI"];
             string result = "";
             bool flag = false;
             HttpResponseMessage response = null;
@@ -199,6 +199,50 @@ namespace ServiceRequest.Models
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 response = client.PostAsJsonAsync(struri2, objsr).Result;
                 
+
+                if (response != null || response.IsSuccessStatusCode)
+                {
+
+                    result = response.Content.ReadAsStringAsync().Result;
+
+                }
+
+
+
+                flag = Convert.ToBoolean(result);
+                return flag;
+
+
+
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+            return flag;
+        }
+
+        //resolve status from pending to done 
+        public bool resolveServiceRequestAPI(ServiceRequestModel objsr)
+        {
+            //objsr.emailId = email;// adding email of logged in user from session to obj of model.
+
+
+            string appservice = ConfigurationManager.AppSettings["ServiceRequestAPI"];
+            string result = "";
+            bool flag = false;
+            HttpResponseMessage response = null;
+            try
+            {
+
+                string appFolderName = "";
+                string struri2 = appFolderName + "/" + "api" + "/" + "ServiceRequestController" + "/" + "saveServiceRequestAPI";
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(appservice);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                response = client.PostAsJsonAsync(struri2, objsr).Result;
+
 
                 if (response != null || response.IsSuccessStatusCode)
                 {

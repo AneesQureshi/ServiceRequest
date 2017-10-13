@@ -19,20 +19,46 @@ namespace ServiceRequest.Controllers
         public ActionResult AddRequest(ServiceRequestModel objsr)
         {
             string email = (string)Session["email"];
+            //generating random emailid and adding in the object of sr below
+            Random rnd = new Random();
+            int idRandom = rnd.Next(10000000, 99999999); // creates a 8 digit random no.
+            objsr.idsr = idRandom.ToString();
             bool flag=objsr.saveServiceRequestAPI(objsr,email);
-           
 
+            ServiceRequestModel objSr1 = new ServiceRequestModel();
             if (flag == true)
             {
                 TempData["message"] = "Service request added successfully";
-                return View();
+                return RedirectToAction("addRequest", "View",objSr1);
+               
             }
             else
             {
                 TempData["message"] = "Oops! Please try again later.";
-                return View();
+                return RedirectToAction("addRequest", "View",objSr1);
             }
             
+        }
+
+        public ActionResult Resolve(ServiceRequestModel objsr)
+        {
+           
+            
+            bool flag = objsr.resolveServiceRequestAPI(objsr);
+
+            ServiceRequestModel objSr1 = new ServiceRequestModel();
+            if (flag == true)
+            {
+                TempData["message"] = "Service request added successfully";
+                return RedirectToAction("addRequest", "View", objSr1);
+
+            }
+            else
+            {
+                TempData["message"] = "Oops! Please try again later.";
+                return RedirectToAction("addRequest", "View", objSr1);
+            }
+
         }
     }
 }

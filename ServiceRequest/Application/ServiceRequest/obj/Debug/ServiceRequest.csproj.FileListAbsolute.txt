@@ -66,3 +66,10 @@ D:\Anees_Office\ServiceRequest\ServiceRequest\Application\ServiceRequest\obj\Deb
 D:\Anees_Office\ServiceRequest\ServiceRequest\Application\ServiceRequest\obj\Debug\ServiceRequest.csprojResolveAssemblyReference.cache
 D:\Anees_Office\ServiceRequest\ServiceRequest\Application\ServiceRequest\bin\Newtonsoft.Json.dll
 D:\Anees_Office\ServiceRequest\ServiceRequest\Application\ServiceRequest\bin\Newtonsoft.Json.xml
+D:\Anees_Office\ServiceRequest\ServiceRequest\Application\ServiceRequest\bin\System.Net.Http.dll
+D:\Anees_Office\ServiceRequest\ServiceRequest\Application\ServiceRequest\bin\System.Net.Http.Extensions.dll
+D:\Anees_Office\ServiceRequest\ServiceRequest\Application\ServiceRequest\bin\System.Net.Http.Formatting.dll
+D:\Anees_Office\ServiceRequest\ServiceRequest\Application\ServiceRequest\bin\System.Net.Http.Primitives.dll
+D:\Anees_Office\ServiceRequest\ServiceRequest\Application\ServiceRequest\bin\System.Net.Http.WebRequest.dll
+D:\Anees_Office\ServiceRequest\ServiceRequest\Application\ServiceRequest\bin\System.Net.Http.xml
+D:\Anees_Office\ServiceRequest\ServiceRequest\Application\ServiceRequest\bin\System.Net.Http.WebRequest.xml

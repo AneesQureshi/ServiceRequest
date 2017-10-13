@@ -17,13 +17,14 @@ namespace ServiceRequest.Models
         public string role { get; set; }
         public string userName { get; set; }
 
-        public string webapiCheckUser(UserModel user)
+        public UserModel webapiCheckUser(UserModel user)
         {
 
 
             string appservice = ConfigurationManager.AppSettings["ServiceRequestAPI"];
-           
-            string role = "";
+
+            string result = "";
+            UserModel objuser = new UserModel();
            
             HttpResponseMessage response = null; // if   HttpResponseMessage dnt work then add in referece system.net,system.nethttp, system.net.formatiing  etc
             try
@@ -43,19 +44,19 @@ namespace ServiceRequest.Models
                 if (response != null || response.IsSuccessStatusCode)
                 {
 
-                    role = response.Content.ReadAsStringAsync().Result;
+                    result = response.Content.ReadAsStringAsync().Result;
 
                 }
 
-                role = JsonConvert.DeserializeObject<string>(role);
-                return role;
+                objuser = JsonConvert.DeserializeObject<UserModel>(result);
+                return objuser;
 
             }
             catch (Exception ex)
             {
                 string msg = ex.Message;
             }
-            return role;
+            return objuser;
         }
     }
 }

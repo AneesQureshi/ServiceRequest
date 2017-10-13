@@ -26,8 +26,10 @@ namespace ServiceRequest.Controllers
             if (ModelState.IsValid)
             {
                 Session["email"] = objUserModel.email;
-                string role = objUserModel.webapiCheckUser(objUserModel);
+                objUserModel= objUserModel.webapiCheckUser(objUserModel);
+                string role = objUserModel.role;
                 Session["role"] = role;
+                Session["userName"] = objUserModel.userName;
 
                 if (role == "admin")
                     return RedirectToAction("AdminHome", "Admin");

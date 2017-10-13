@@ -146,206 +146,205 @@
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.description, new { @class = "col-sm-2 control-label" })
                                         <div class="col-sm-10">
-                                            @Html.TextAreaFor(model => model.description, 4, 63, new { @title = "Description", @class = "form-control" })
+                                            @Html.TextAreaFor(model => model.description, 4, 63, new { @class = "form-control" })
                                             <br>
                                         </div>
                                     </div>
-                                   
 
 
-                                    <button type="submit" class="btn btn-info pull-right" value="Submit Request" id="submit">Submit</button>
+                                    <div class="form-group">
+                                        <div class="col-sm-2">
+                                            @TempData["message"]     </div>
+                                      
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn pull-left" value="Submit Request" id="submit" style="background-color:#3C8DBC;color:#FFFFF0" ><b>Submit</b></button>
 
-
-                                    <br>
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <div class="col-sm-12 col-lg-12">
-                                                <h3 id="msg"></h3>
-                                            </div>
-                                        </div>
+                                             </div>
                                     </div>
+                                        
+
 
 
                                         }
-//if end
-                                    }
-                                    else
-                                    {
+                                        //if end
+                                        }
+                                        else
+                                        {
+
+                                        //admin can see any request view detail
+                                        <h2>View Request Detail</h2>
+
+                                        using(Html.BeginForm("Resolve", "ServiceRequest", FormMethod.Post))
+                                        {
+                                        //for idsr
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.idsr, new { @class = "col-sm-2 control-label" })
+                                            <div class="col-sm-10">
+
+                                                @Html.TextBoxFor(model => model.idsr, new { @class = "form-control", @readonly = "readonly" })
+                                                <br>
+                                            </div>
+                                        </div>
+
+                                        //for title
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.title, new { @class = "col-sm-2 " })
+                                            <div class="col-sm-10">
+                                                @Html.TextBoxFor(model => model.title, new { @class = "form-control", disabled = "disabled" })
+                                                <br>
+                                            </div>
+                                        </div>
+
+                                        //for category list
+                                        <div class="form-group">
+
+                                            @Html.LabelFor(model => model.category, new { @class = "col-sm-2 " })
 
 
-<h2>View Request Detail</h2>
+                                            <div class="col-sm-10">
+                                                @{
+                                                    List<SelectListItem> categorylistItems = new List<SelectListItem>();
+                                                    categorylistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "Email Creation",
+                                                        Value = "email creation"
 
-using(Html.BeginForm("Resolve", "Status", FormMethod.Post))
-{
-    //for idsr
-    <div class="form-group">
-        @Html.LabelFor(model => model.idsr, new { @class = "col-sm-2 control-label" })
-        <div class="col-sm-10">
-           
-             @Html.TextBoxFor(model => model.idsr, new { @class = "form-control", disabled = "disabled" })
-            <br>
-        </div>
-    </div>
+                                                    });
+                                                    categorylistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "Software Installation",
+                                                        Value = "software installation"
 
-    //for title
-    <div class="form-group">
-        @Html.LabelFor(model => model.title, new { @class = "col-sm-2 " })
-        <div class="col-sm-10">
-            @Html.TextBoxFor(model => model.title, new { @class = "form-control", disabled = "disabled" })
-            <br>
-        </div>
-    </div>
+                                                    });
+                                                    categorylistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "Hardware Support",
+                                                        Value = "hardware support"
+                                                    });
+                                                    categorylistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "Others",
+                                                        Value = "others"
+                                                    });
 
-    //for category list
-    <div class="form-group">
+                                                }
 
-        @Html.LabelFor(model => model.category, new { @class = "col-sm-2 " })
-
-
-        <div class="col-sm-10">
-            @{
-                List<SelectListItem> categorylistItems = new List<SelectListItem>();
-                categorylistItems.Add(new SelectListItem
-                {
-                    Text = "Email Creation",
-                    Value = "email creation"
-
-                });
-                categorylistItems.Add(new SelectListItem
-                {
-                    Text = "Software Installation",
-                    Value = "software installation"
-
-                });
-                categorylistItems.Add(new SelectListItem
-                {
-                    Text = "Hardware Support",
-                    Value = "hardware support"
-                });
-                categorylistItems.Add(new SelectListItem
-                {
-                    Text = "Others",
-                    Value = "others"
-                });
-
-            }
-
-            @Html.DropDownListFor(model => model.category, categorylistItems, "-- Select Category --", new { @onchange = "setStates()", @class = "form-control", @selected = "-- Select Category --", disabled = "disabled" })
-            <br>
-        </div>
-    </div>
+                                                @Html.DropDownListFor(model => model.category, categorylistItems, "-- Select Category --", new { @onchange = "setStates()", @class = "form-control", @selected = "-- Select Category --", disabled = "disabled" })
+                                                <br>
+                                            </div>
+                                        </div>
 
 
 
-                //for subcategory list
+                                        //for subcategory list
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.subCategory, new { @class = "col-sm-2 " })
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.subCategory, new { @class = "col-sm-2 " })
 
-                    @{
-                        List<SelectListItem> subCategorylistItems = new List<SelectListItem>();
-                        subCategorylistItems.Add(new SelectListItem
-                        {
-                            Text = "Window Installation",
-                            Value = "window installation"
-                        });
-                        subCategorylistItems.Add(new SelectListItem
-                        {
-                            Text = "Driver Installation",
-                            Value = "driver installation",
+                                            @{
+                                                List<SelectListItem> subCategorylistItems = new List<SelectListItem>();
+                                                subCategorylistItems.Add(new SelectListItem
+                                                {
+                                                    Text = "Window Installation",
+                                                    Value = "window installation"
+                                                });
+                                                subCategorylistItems.Add(new SelectListItem
+                                                {
+                                                    Text = "Driver Installation",
+                                                    Value = "driver installation",
 
-                        });
-                        subCategorylistItems.Add(new SelectListItem
-                        {
-                            Text = "Graphic software Installation",
-                            Value = "graphic software installation"
-                        });
-                        subCategorylistItems.Add(new SelectListItem
-                        {
-                            Text = "Photoshop",
-                            Value = "photoshop"
-                        });
-                        subCategorylistItems.Add(new SelectListItem
-                        {
-                            Text = "Admin Email",
-                            Value = "admin email"
-                        });
-                        subCategorylistItems.Add(new SelectListItem
-                        {
-                            Text = "Upgrade RAM",
-                            Value = "upgrade ram"
-                        });
-
-
-                    }
-                    <div class="col-sm-10">
-                        @Html.DropDownListFor(model => model.subCategory, subCategorylistItems, "-- Select Sub-Category --", new { @class = "form-control", @selected = "-- Select Sub-Category --", disabled = "disabled" })
-                        <br>
-                     </div>
-                </div>
+                                                });
+                                                subCategorylistItems.Add(new SelectListItem
+                                                {
+                                                    Text = "Graphic software Installation",
+                                                    Value = "graphic software installation"
+                                                });
+                                                subCategorylistItems.Add(new SelectListItem
+                                                {
+                                                    Text = "Photoshop",
+                                                    Value = "photoshop"
+                                                });
+                                                subCategorylistItems.Add(new SelectListItem
+                                                {
+                                                    Text = "Admin Email",
+                                                    Value = "admin email"
+                                                });
+                                                subCategorylistItems.Add(new SelectListItem
+                                                {
+                                                    Text = "Upgrade RAM",
+                                                    Value = "upgrade ram"
+                                                });
 
 
-                        //for priority list
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.priority, new { @class = "col-sm-2 " })
+                                            }
+                                            <div class="col-sm-10">
+                                                @Html.DropDownListFor(model => model.subCategory, subCategorylistItems, "-- Select Sub-Category --", new { @class = "form-control", @selected = "-- Select Sub-Category --", disabled = "disabled" })
+                                                <br>
+                                            </div>
+                                        </div>
 
 
-                            @{
-                                List<SelectListItem> prioritylistItems = new List<SelectListItem>();
-                                prioritylistItems.Add(new SelectListItem
-                                {
-                                    Text = "Low",
-                                    Value = "low"
-                                });
-                                prioritylistItems.Add(new SelectListItem
-                                {
-                                    Text = "Medium",
-                                    Value = "medium",
+                                        //for priority list
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.priority, new { @class = "col-sm-2 " })
 
-                                });
-                                prioritylistItems.Add(new SelectListItem
-                                {
-                                    Text = "High",
-                                    Value = "high"
-                                });
 
-                            }
-                            <div class="col-sm-10">
-                                @Html.DropDownListFor(model => model.priority, prioritylistItems, "-- Select Priority --", new { @class = "form-control", @selected = "-- Select Priority --", disabled = "disabled" })
-                                <br>
-                             </div>
-                        </div>
+                                            @{
+                                                List<SelectListItem> prioritylistItems = new List<SelectListItem>();
+                                                prioritylistItems.Add(new SelectListItem
+                                                {
+                                                    Text = "Low",
+                                                    Value = "low"
+                                                });
+                                                prioritylistItems.Add(new SelectListItem
+                                                {
+                                                    Text = "Medium",
+                                                    Value = "medium",
 
-                                //for description
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.description, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-10">
-                                        @Html.TextAreaFor(model => model.description, 4, 63, new { @title = "Description", @class = "form-control", disabled = "disabled" })
+                                                });
+                                                prioritylistItems.Add(new SelectListItem
+                                                {
+                                                    Text = "High",
+                                                    Value = "high"
+                                                });
+
+                                            }
+                                            <div class="col-sm-10">
+                                                @Html.DropDownListFor(model => model.priority, prioritylistItems, "-- Select Priority --", new { @class = "form-control", @selected = "-- Select Priority --", disabled = "disabled" })
+                                                <br>
+                                            </div>
+                                        </div>
+
+                                        //for description
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.description, new { @class = "col-sm-2 control-label" })
+                                            <div class="col-sm-10">
+                                                @Html.TextAreaFor(model => model.description, 4, 63, new { @title = "Description", @class = "form-control", disabled = "disabled" })
+                                                <br>
+                                            </div>
+                                        </div>
+                                        //for status
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.status, new { @class = "col-sm-2 control-label" })
+                                            <div class="col-sm-10">
+                                                @Html.TextBoxFor(model => model.status, new { @class = "form-control", disabled = "disabled" })
+                                                <br>
+                                            </div>
+                                        </div>
+
+
+                                        <button type="submit" class="btn btn-info pull-right" value="Resolved" id="resolve" style="background-color:#3C8DBC;color:#FFFFF0">Resolved</button>
+
+
                                         <br>
-                                    </div>
-                                </div>
-                                //for status
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.status, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-10">
-                                        @Html.TextBoxFor(model => model.status, new { @class = "form-control", disabled = "disabled" })
-                                        <br>
-                                       </div>
-                                </div>
-
-
-                                <button type="submit" class="btn btn-info pull-right" value="Resolved" id="resolve">Resolved</button>
-
-
-                                            <br>
-                                            <div class="row">
+                                        @*<div class="row">
                                                 <div class="form-group">
                                                     <div class="col-sm-12 col-lg-12">
                                                         <h3 id="msg"></h3>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>*@
 
 
-                                }
-                                }
+                                        }
+                                        }

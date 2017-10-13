@@ -15,19 +15,19 @@ namespace ServiceRequestAPI.Controllers
         public IHttpActionResult LogIn(string email, string password)
         {
 
-            string role = "";
+            
             Users user = new Users();
-
+            Users obju = new Users();
 
             try
             {
-                role = user.ValidateUser(email, password);
+                obju = user.ValidateUser(email, password);
             }
             catch (Exception ex)
             {
                 string msg = ex.Message;
             }
-            return Ok(role);
+            return Ok(obju);
         }
     }
 }

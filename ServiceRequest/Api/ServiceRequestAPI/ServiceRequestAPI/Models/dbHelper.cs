@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using ServiceRequestAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,9 +15,10 @@ namespace ServiceRequestAPI.Models
         MySqlCommand cmd;
 
 
-        public string ValidateUser(string email, string pwd)
+        public Users ValidateUser(string email, string pwd)
         {
-            string role = "";
+
+            Users obju = new Users();
             try
             {
                 con = db.OpenConnection();
@@ -28,7 +30,8 @@ namespace ServiceRequestAPI.Models
 
                 if (sdr.Read())
                 {
-                    role = sdr["role"].ToString();
+                    obju.role = sdr["role"].ToString();
+                    obju.userName = sdr["userName"].ToString();
 
                 }
             }
@@ -40,7 +43,7 @@ namespace ServiceRequestAPI.Models
             {
                 db.CloseConnection();
             }
-            return role;
+            return obju;
         }
 
         public List<ServiceRequestModel> LoadServiceRequest()
@@ -182,15 +185,16 @@ namespace ServiceRequestAPI.Models
                 MySqlCommand cmd = new MySqlCommand("sp_saveServiceRequest", sqlcon);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("spidsr", "1");
+                
+
+                cmd.Parameters.AddWithValue("spidsr", objsr.idsr);
                 cmd.Parameters.AddWithValue("spemail", objsr.emailId);
                 cmd.Parameters.AddWithValue("sptitle", objsr.title);
                 cmd.Parameters.AddWithValue("spcategory", objsr.category);
                 cmd.Parameters.AddWithValue("spsubcategory", objsr.subCategory);
                 cmd.Parameters.AddWithValue("sppriority", objsr.priority);
                 cmd.Parameters.AddWithValue("spdescription", objsr.description);
-                MySqlDataReader sdr = cmd.ExecuteReader();
-
+               
                 int rowInserted = cmd.ExecuteNonQuery();
 
                 if (rowInserted > 0)
@@ -198,7 +202,7 @@ namespace ServiceRequestAPI.Models
                     Inserted = true;
                 }
 
-                sdr.Close();
+               
 
 
 

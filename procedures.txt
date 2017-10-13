@@ -6,13 +6,14 @@
 
 
 3.click resolve changes status in db-2hr
-4.click submit save req in db with generating new sr.-2hr
+
 
 5.UI sub category list automatic open.-2hr.
-6.layout put name through session
-7.Publish
 
-total - 20hr.
+
+7.Publish-2hr
+
+total - 10hr.
 
 
 

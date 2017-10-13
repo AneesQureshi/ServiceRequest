@@ -136,6 +136,7 @@
     <Compile Include="Models\DbConnect.cs" />
     <Compile Include="Models\dbHelper.cs" />
     <Compile Include="Models\ServiceRequestModel.cs" />
+    <Compile Include="Models\userModel.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
