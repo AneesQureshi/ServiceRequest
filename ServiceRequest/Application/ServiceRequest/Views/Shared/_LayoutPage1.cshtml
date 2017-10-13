@@ -110,14 +110,25 @@
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-dashboard"></i> <span>@Session["userName"]</span>
-                            @*<span class="pull-right-container">
+                            <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
-                            </span>*@
+                            </span>
                         </a>
-                        @*<ul class="treeview-menu">
-                            <li><a href="@Url.Action("HomePage", "Home")"><i class="fa fa-circle-o"></i> a1</a></li>
-                            <li><a href="@Url.Action("History", "MyPhotos")"><i class="fa fa-circle-o"></i>a2 </a></li>
-                        </ul>*@
+                        <ul class="treeview-menu">
+
+                            @if ((string)Session["role"] == "user")
+                            {
+                                <li><a href="@Url.Action("UserHome", "Admin")"><i class="fa fa-circle-o"></i> Home</a></li>
+
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("AdminHome", "Admin")"><i class="fa fa-circle-o"></i> Home</a></li>
+
+                            }
+                            
+                            
+                        </ul>
                     </li>
 
                 </ul>

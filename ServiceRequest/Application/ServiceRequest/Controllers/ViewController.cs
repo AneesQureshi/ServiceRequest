@@ -13,7 +13,9 @@ namespace ServiceRequest.Controllers
         [HttpGet]
         public ActionResult ViewDetail(string idsr,string title, string category, string subCategory, string priority, string status)
         {
-            ServiceRequestModel objsr = new ServiceRequestModel();
+            if (Session["email"] != null)
+            {
+                ServiceRequestModel objsr = new ServiceRequestModel();
             objsr.idsr = idsr;
             objsr.title = title;
             objsr.category = category;
@@ -23,6 +25,12 @@ namespace ServiceRequest.Controllers
             string description= objsr.loadDescriptionAPI(idsr);
             objsr.description = description;
             return View(objsr);
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
 
         //GET:for add request

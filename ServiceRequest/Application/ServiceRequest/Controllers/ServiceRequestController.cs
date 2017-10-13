@@ -18,7 +18,9 @@ namespace ServiceRequest.Controllers
         //for saving service request in db
         public ActionResult AddRequest(ServiceRequestModel objsr)
         {
-            string email = (string)Session["email"];
+            if (Session["email"] != null)
+            {
+                string email = (string)Session["email"];
             //generating random emailid and adding in the object of sr below
             Random rnd = new Random();
             int idRandom = rnd.Next(10000000, 99999999); // creates a 8 digit random no.
@@ -37,14 +39,21 @@ namespace ServiceRequest.Controllers
                 TempData["message"] = "Oops! Please try again later.";
                 return RedirectToAction("addRequest", "View",objSr1);
             }
-            
+
         }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+    }
+
+}
 
         public ActionResult Resolve(ServiceRequestModel objsr)
         {
-           
-            
-            bool flag = objsr.resolveServiceRequestAPI(objsr);
+            if (Session["email"] != null)
+            {
+
+                bool flag = objsr.resolveServiceRequestAPI(objsr);
 
            
             if (flag == true)
@@ -58,6 +67,12 @@ namespace ServiceRequest.Controllers
                 TempData["message"] = "Oops! Please try again later.";
                 return RedirectToAction("AdminHome", "Admin", objsr);
             }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
 
         }
     }

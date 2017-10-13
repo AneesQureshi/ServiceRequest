@@ -14,10 +14,17 @@ namespace ServiceRequest.Controllers
         // GET: User
         public ActionResult UserHome()
         {
+            if (Session["email"] != null)
+            {
 
-           
-            return RedirectToAction("UserHome", "Admin");//opening view from other controller action
-         
+                return RedirectToAction("UserHome", "Admin");//opening view from other controller action
+
         }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+    }
+
+}
     }
 }

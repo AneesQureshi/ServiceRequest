@@ -5,6 +5,35 @@
 }
 
 
+<script>
+
+        var states = new Array();
+
+        states['email creation'] = new Array('Mailing list', 'Admin email', 'Individual email');
+        states['software installation'] = new Array('Window Installation', 'Driver Installation', 'Graphic software Installation','Photoshop');
+        states['hardware support'] = new Array('Upgrade RAM', 'Fan heating', 'Ups not working');
+        states['others'] = new Array('others');
+
+
+        function setStates() {
+            cntrySel = document.getElementById('state');
+            stateList = states[cntrySel.value];
+            changeSelect('city', stateList, stateList);
+        }
+
+        function changeSelect(fieldID, newOptions, newValues) {
+            selectField = document.getElementById(fieldID);
+            selectField.options.length = 0;
+            for (i = 0; i < newOptions.length; i++) {
+                selectField.options[selectField.length] = new Option(newOptions[i], newValues[i]);
+            }
+        }
+
+</script>
+
+
+
+
 @if ((string)Session["role"] == "user")
 {
     <h2>Service Request Form</h2>
@@ -56,7 +85,7 @@
 
                 }
 
-                @Html.DropDownListFor(model => model.category, categorylistItems, "-- Select Category --", new { @onchange = "setStates()", @class = "form-control", @selected = "-- Select Category --" })
+                @Html.DropDownListFor(model => model.category, categorylistItems, "-- Select Category --", new { @onchange = "setStates()", @id = "state", @class = "form-control", @selected = "-- Select Category --" })
                 <br>
             </div>
         </div>
@@ -101,11 +130,36 @@
                                 Text = "Upgrade RAM",
                                 Value = "upgrade ram"
                             });
+                            subCategorylistItems.Add(new SelectListItem
+                            {
+                                Text = "Individual email",
+                                Value = "Individual email"
+                            });
+                            subCategorylistItems.Add(new SelectListItem
+                            {
+                                Text = "Mailing list",
+                                Value = "Mailing list"
+                            });
+                            subCategorylistItems.Add(new SelectListItem
+                            {
+                                Text = "Fan heating",
+                                Value = "Fan heating"
+                            });
+                            subCategorylistItems.Add(new SelectListItem
+                            {
+                                Text = "Ups not working",
+                                Value = "Ups not working"
+                            });
+                            subCategorylistItems.Add(new SelectListItem
+                            {
+                                Text = "others",
+                                Value = "others"
+                            });
 
 
                         }
                         <div class="col-sm-10">
-                            @Html.DropDownListFor(model => model.subCategory, subCategorylistItems, "-- Select Sub-Category --", new { @class = "form-control", @selected = "-- Select Sub-Category --" })
+                            @Html.DropDownListFor(model => model.subCategory, subCategorylistItems, "-- Select Sub-Category --", new { @class = "form-control", @selected = "-- Select Sub-Category --", @id = "city" })
                             <br>
                         </div>
                     </div>
@@ -279,7 +333,7 @@
 
                                             }
                                             <div class="col-sm-10">
-                                                @Html.DropDownListFor(model => model.subCategory, subCategorylistItems, "-- Select Sub-Category --", new { @class = "form-control", @selected = "-- Select Sub-Category --", @readonly = "readonly" })
+                                                @Html.DropDownListFor(model => model.subCategory, subCategorylistItems, "-- Select Sub-Category --", new { @class = "form-control", @selected = "-- Select Sub-Category --", @readonly = "readonly"  })
                                                 <br>
                                             </div>
                                         </div>
