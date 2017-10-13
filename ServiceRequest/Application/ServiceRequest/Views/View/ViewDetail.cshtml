@@ -154,22 +154,23 @@
 
                                     <div class="form-group">
                                         <div class="col-sm-2">
-                                            @TempData["message"]     </div>
-                                      
-                                        <div class="col-sm-10">
-                                            <button type="submit" class="btn pull-left" value="Submit Request" id="submit" style="background-color:#3C8DBC;color:#FFFFF0" ><b>Submit</b></button>
+                                            @TempData["message"]
+                                        </div>
 
-                                             </div>
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn pull-left" value="Submit Request" id="submit" style="background-color:#3C8DBC;color:#FFFFF0"><b>Submit</b></button>
+
+                                        </div>
                                     </div>
-                                        
+
 
 
 
                                         }
                                         //if end
-                                        }
-                                        else
-                                        {
+                                    }
+                                    else
+                                    {
 
                                         //admin can see any request view detail
                                         <h2>View Request Detail</h2>
@@ -190,7 +191,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.title, new { @class = "col-sm-2 " })
                                             <div class="col-sm-10">
-                                                @Html.TextBoxFor(model => model.title, new { @class = "form-control", disabled = "disabled" })
+                                                @Html.TextBoxFor(model => model.title, new { @class = "form-control", @readonly = "readonly" })
                                                 <br>
                                             </div>
                                         </div>
@@ -229,7 +230,7 @@
 
                                                 }
 
-                                                @Html.DropDownListFor(model => model.category, categorylistItems, "-- Select Category --", new { @onchange = "setStates()", @class = "form-control", @selected = "-- Select Category --", disabled = "disabled" })
+                                                @Html.DropDownListFor(model => model.category, categorylistItems, "-- Select Category --", new { @onchange = "setStates()", @class = "form-control", @selected = "-- Select Category --", @readonly = "readonly" })
                                                 <br>
                                             </div>
                                         </div>
@@ -278,7 +279,7 @@
 
                                             }
                                             <div class="col-sm-10">
-                                                @Html.DropDownListFor(model => model.subCategory, subCategorylistItems, "-- Select Sub-Category --", new { @class = "form-control", @selected = "-- Select Sub-Category --", disabled = "disabled" })
+                                                @Html.DropDownListFor(model => model.subCategory, subCategorylistItems, "-- Select Sub-Category --", new { @class = "form-control", @selected = "-- Select Sub-Category --", @readonly = "readonly" })
                                                 <br>
                                             </div>
                                         </div>
@@ -310,7 +311,7 @@
 
                                             }
                                             <div class="col-sm-10">
-                                                @Html.DropDownListFor(model => model.priority, prioritylistItems, "-- Select Priority --", new { @class = "form-control", @selected = "-- Select Priority --", disabled = "disabled" })
+                                                @Html.DropDownListFor(model => model.priority, prioritylistItems, "-- Select Priority --", new { @class = "form-control", @selected = "-- Select Priority --", @readonly = "readonly" })
                                                 <br>
                                             </div>
                                         </div>
@@ -319,7 +320,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.description, new { @class = "col-sm-2 control-label" })
                                             <div class="col-sm-10">
-                                                @Html.TextAreaFor(model => model.description, 4, 63, new { @title = "Description", @class = "form-control", disabled = "disabled" })
+                                                @Html.TextAreaFor(model => model.description, 4, 63, new { @title = "Description", @class = "form-control", @readonly = "readonly" })
                                                 <br>
                                             </div>
                                         </div>
@@ -327,14 +328,23 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.status, new { @class = "col-sm-2 control-label" })
                                             <div class="col-sm-10">
-                                                @Html.TextBoxFor(model => model.status, new { @class = "form-control", disabled = "disabled" })
+                                                @Html.TextBoxFor(model => model.status, new { @class = "form-control", @readonly = "readonly" })
                                                 <br>
                                             </div>
                                         </div>
 
 
-                                        <button type="submit" class="btn btn-info pull-right" value="Resolved" id="resolve" style="background-color:#3C8DBC;color:#FFFFF0">Resolved</button>
+                                       
+                                        <div class="form-group">
+                                            <div class="col-sm-2">
+                                                @TempData["message"]
+                                            </div>
 
+                                            <div class="col-sm-10">
+                                                <button type="submit" class="btn btn-info pull-right" value="Resolved" id="resolve" style="background-color:#3C8DBC;color:#FFFFF0">Resolved</button>
+
+                                            </div>
+                                        </div>
 
                                         <br>
                                         @*<div class="row">

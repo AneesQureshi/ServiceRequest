@@ -218,5 +218,52 @@ namespace ServiceRequestAPI.Models
             return Inserted;
         }
 
+
+        //for changing the status from pending to done
+
+        public bool resolveServiceRequest(ServiceRequestModel objsr)
+        {
+
+            bool status = false;
+            try
+            {
+
+                MySqlConnection sqlcon = db.OpenConnection();
+                MySqlCommand cmd = new MySqlCommand("sp_resolveServiceRequest", sqlcon);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+
+                cmd.Parameters.AddWithValue("spidsr", objsr.idsr);
+                //cmd.Parameters.AddWithValue("spemail", objsr.emailId);
+                //cmd.Parameters.AddWithValue("sptitle", objsr.title);
+                //cmd.Parameters.AddWithValue("spcategory", objsr.category);
+                //cmd.Parameters.AddWithValue("spsubcategory", objsr.subCategory);
+                //cmd.Parameters.AddWithValue("sppriority", objsr.priority);
+                //cmd.Parameters.AddWithValue("spdescription", objsr.description);
+
+                int rowInserted = cmd.ExecuteNonQuery();
+
+                if (rowInserted > 0)
+                {
+                    status = true;
+                }
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            finally
+            {
+                db.CloseConnection();
+            }
+            return status;
+        }
+
     }
 }

@@ -58,5 +58,15 @@ namespace ServiceRequestAPI.Models
             return Inserted;
         }
 
+        public bool resolveServiceRequest(ServiceRequestModel objsr)
+        {
+
+            bool status = false;
+            dbHelper db = new dbHelper();
+            status = db.resolveServiceRequest(objsr);
+
+            return status;
+        }
+
     }
 }

@@ -87,5 +87,26 @@ namespace ServiceRequestAPI.Controllers
 
             return Ok(Inserted);
         }
+
+        //for changing status of sr from pending to done
+        [Route("api/ServiceRequestController/resolveServiceRequestAPI")]
+        [HttpPost]
+        public IHttpActionResult resolveServiceRequestAPI(ServiceRequestModel objsr)
+        {
+
+            bool status = false;
+
+            Users user1 = new Users();
+            try
+            {
+                status = objsr.resolveServiceRequest(objsr);
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+
+            return Ok(status);
+        }
     }
 }

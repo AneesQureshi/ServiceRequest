@@ -236,7 +236,7 @@ namespace ServiceRequest.Models
             {
 
                 string appFolderName = "";
-                string struri2 = appFolderName + "/" + "api" + "/" + "ServiceRequestController" + "/" + "saveServiceRequestAPI";
+                string struri2 = appFolderName + "/" + "api" + "/" + "ServiceRequestController" + "/" + "resolveServiceRequestAPI";
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(appservice);
                 client.DefaultRequestHeaders.Accept.Clear();

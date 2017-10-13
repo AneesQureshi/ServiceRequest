@@ -46,17 +46,17 @@ namespace ServiceRequest.Controllers
             
             bool flag = objsr.resolveServiceRequestAPI(objsr);
 
-            ServiceRequestModel objSr1 = new ServiceRequestModel();
+           
             if (flag == true)
             {
-                TempData["message"] = "Service request added successfully";
-                return RedirectToAction("addRequest", "View", objSr1);
+                TempData["message"] = "Service request Resolved";
+                return RedirectToAction("AdminHome", "Admin",objsr);
 
             }
             else
             {
                 TempData["message"] = "Oops! Please try again later.";
-                return RedirectToAction("addRequest", "View", objSr1);
+                return RedirectToAction("AdminHome", "Admin", objsr);
             }
 
         }

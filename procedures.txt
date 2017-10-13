@@ -5,15 +5,17 @@
 
 
 
-3.click resolve changes status in db-2hr
 
+ session name click particular home-1hr
 
 5.UI sub category list automatic open.-2hr.
 
-
+validation-1hr
+--------------------
 7.Publish-2hr
 
-total - 10hr.
+
+total - 5hr.
 
 
 
