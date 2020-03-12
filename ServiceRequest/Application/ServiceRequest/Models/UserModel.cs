@@ -32,7 +32,7 @@ namespace ServiceRequest.Models
                 //this has to be uncomment before publish 
 
                 //string appFolderName = "Service_Request_Api"; 
-                string appFolderName = "";
+                string appFolderName = ConfigurationManager.AppSettings["appFolderName"]; ;
                 string struri2 = appFolderName + "/" + "api" + "/" + "Users" + "/" + "LogIn" + "/" + user.email + "/" + user.password;
 
                 HttpClient client = new HttpClient();

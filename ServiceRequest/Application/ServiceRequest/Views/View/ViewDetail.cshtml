@@ -30,8 +30,35 @@
         }
 
 </script>
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script>
+    //validations
+        $(document).ready(function () {
+            $("#submit").click(function () {
+                debugger;
+                var title = $("#title").val();
+                var description = $("#description").val();
 
 
+                
+
+                if (title == "") {
+                    alert("Please Enter your title");
+                    return false;
+                }
+               
+                
+
+                if (description == "") {
+                    alert("Please Enter short Description");
+                    return false;
+                }
+
+
+            });
+
+        });
+</script>
 
 
 @if ((string)Session["role"] == "user")
@@ -40,13 +67,13 @@
 
     using (Html.BeginForm("AddRequest", "ServiceRequest", FormMethod.Post))
     {
-
+        
 
         //for title
         <div class="form-group">
             @Html.LabelFor(model => model.title, new { @class = "col-sm-2 " })
             <div class="col-sm-10">
-                @Html.TextBoxFor(model => model.title, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.title, new { @class = "form-control", @id = "title" })
                 <br>
             </div>
         </div>
@@ -191,7 +218,7 @@
 
                                 }
                                 <div class="col-sm-10">
-                                    @Html.DropDownListFor(model => model.priority, prioritylistItems, "-- Select Priority --", new { @class = "form-control", @selected = "-- Select Priority --"})
+                                    @Html.DropDownListFor(model => model.priority, prioritylistItems, "-- Select Priority --", new { @class = "form-control", @selected = "-- Select Priority --" })
                                     <br>
                                 </div>
                             </div>
@@ -212,13 +239,13 @@
                                         </div>
 
                                         <div class="col-sm-10">
-                                            <button type="submit" class="btn pull-left" value="Submit Request" id="submit" style="background-color:#3C8DBC;color:#FFFFF0"><b>Submit</b></button>
+                                            <button type="submit" class="btn pull-left" value="Submit Request" id="submit" style="background-color:#3C8DBC;color:#FFFFF0" ><b>Submit</b></button>
 
                                         </div>
                                     </div>
 
 
-
+                                            
 
                                         }
                                         //if end

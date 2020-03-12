@@ -59,7 +59,7 @@ namespace ServiceRequest.Models
                 //this has to be uncomment before publish 
 
                 //string appFolderName = "Service_Request_Api"; 
-                string appFolderName = "";
+                string appFolderName = ConfigurationManager.AppSettings["appFolderName"]; ;
                 string struri2 = appFolderName + "/" + "api" + "/" + "ServiceRequestController" + "/" + "loadServiceRequest" + "/" ;
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(appservice);
@@ -104,7 +104,7 @@ namespace ServiceRequest.Models
                 //this has to be uncomment before publish 
 
                 //string appFolderName = "Service_Request_Api"; 
-                string appFolderName = "";
+                string appFolderName = ConfigurationManager.AppSettings["appFolderName"]; ;
                 string struri2 = appFolderName + "/" + "api" + "/" + "ServiceRequestController" + "/" + "loadDescriptionAPI" + "/"+idsr+"/";
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(appservice);
@@ -148,7 +148,7 @@ namespace ServiceRequest.Models
                 //this has to be uncomment before publish 
 
                 //string appFolderName = "Service_Request_Api"; 
-                string appFolderName = "";
+                string appFolderName = ConfigurationManager.AppSettings["appFolderName"]; ;
                 string struri2 = appFolderName + "/" + "api" + "/" + "ServiceRequestController" + "/" + "loadUserServiceRequest" + "/"  + email + "/";
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(appservice);
@@ -191,7 +191,7 @@ namespace ServiceRequest.Models
             try
             {
 
-                string appFolderName = "";
+                string appFolderName = ConfigurationManager.AppSettings["appFolderName"]; ;
                 string struri2 = appFolderName + "/" + "api" + "/" + "ServiceRequestController" + "/" + "saveServiceRequestAPI";
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(appservice);
@@ -235,7 +235,7 @@ namespace ServiceRequest.Models
             try
             {
 
-                string appFolderName = "";
+                string appFolderName = ConfigurationManager.AppSettings["appFolderName"]; ;
                 string struri2 = appFolderName + "/" + "api" + "/" + "ServiceRequestController" + "/" + "resolveServiceRequestAPI";
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(appservice);
